@@ -15,7 +15,12 @@ export default function handler(req, res) {
         "How do you get a mouse to smile? Say 'cheese'!",
         "What cheese is always alone? Provolone.",
         "Why did the Swiss cheese go to therapy? It felt empty inside.",
-        "What’s a vampire’s favorite cheese? Fang-käse!"
+        "What’s a vampire’s favorite cheese? Fang-käse!",
+        "Why did the cheese sit by itself? It needed some R & Brie time.",
+        "What’s a cheese’s favorite horror movie? The Grate Escape!",
+        "What cheese can you hide behind? Camem-bear!",
+        "Why did the cheese fail its driving test? Too much curd-inal sin!",
+        "What cheese do you use to get rich? Cheddar!"
     ];
 
     const randomIndex = Math.floor(Math.random() * jokes.length);
