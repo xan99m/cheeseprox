@@ -1,11 +1,9 @@
-'use client';
-
 import { useState } from 'react';
 
 export default function HomePage() {
   const [joke, setJoke] = useState('');
   const [bgColor, setBgColor] = useState('#fff8e1');
-  const [emojiStyle, setEmojiStyle] = useState({ transform: 'translateY(0px) scale(1)' });
+  const [emojiStyle, setEmojiStyle] = useState<React.CSSProperties>({ transform: 'translateY(0px) scale(1)' });
 
   const bgColors = [
     "#fff8e1", "#ffe0b2", "#ffd54f", "#ffcc80", "#ffab91",
@@ -13,18 +11,15 @@ export default function HomePage() {
   ];
 
   const fetchJoke = async () => {
-    // Fetch joke from API
     const res = await fetch('/api/joke');
     const data = await res.json();
     setJoke(data.joke);
 
-    // Random background color
     const color = bgColors[Math.floor(Math.random() * bgColors.length)];
     setBgColor(color);
 
-    // Bounce and rotate emoji randomly
-    const x = (Math.random() - 0.5) * 50; // horizontal movement
-    const y = -Math.random() * 50; // vertical jump
+    const x = (Math.random() - 0.5) * 50;
+    const y = -Math.random() * 50;
     const scale = 1 + Math.random();
     const rotate = Math.random() * 360;
 
