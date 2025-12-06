@@ -1,0 +1,23 @@
+// api/joke.js
+export default function handler(req, res) {
+    const jokes = [
+        "What type of cheese is made backward? Edam!",
+        "Why did the wheel of cheese never listen? Because it was too mature!",
+        "What do you call cheese that isn’t yours? Nacho cheese!",
+        "Why did the cheese cross the road? To get to the other curd!",
+        "What’s a cheese lover’s favorite music? R’n’Brie!",
+        "How do you handle dangerous cheese? Caerphilly.",
+        "Why did the cheddar break up with the brie? Too much drama!",
+        "What cheese do you use to disguise a small horse? Mascarpone!",
+        "What’s a pirate’s favorite cheese? Chedd-arrr!",
+        "Why did the mozzarella never get promoted? It was too soft.",
+        "Why don’t you ever invite a cheese to a party? It’s too mature.",
+        "How do you get a mouse to smile? Say 'cheese'!",
+        "What cheese is always alone? Provolone.",
+        "Why did the Swiss cheese go to therapy? It felt empty inside.",
+        "What’s a vampire’s favorite cheese? Fang-käse!"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * jokes.length);
+    res.status(200).json({ joke: jokes[randomIndex] });
+}
