@@ -1,65 +1,84 @@
-import Image from "next/image";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheese Joke Generator 🧀</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fff8e1;
+            padding: 50px;
+            transition: background-color 0.5s;
+        }
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
+        h1 {
+            color: #ff6f61;
+            font-size: 2.5rem;
+        }
+
+        #joke {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: #333;
+            min-height: 80px;
+        }
+
+        #cheeseEmoji {
+            font-size: 3rem;
+            margin-top: 20px;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cheese Joke Generator 🧀</h1>
+    <button id="jokeButton">Get a Cheese Joke!</button>
+    <div id="joke"></div>
+    <span id="cheeseEmoji">🧀</span>
+
+    <script>
+        const button = document.getElementById("jokeButton");
+        const jokeDiv = document.getElementById("joke");
+        const cheeseEmoji = document.getElementById("cheeseEmoji");
+
+        // Array of fun background colors
+        const bgColors = [
+            "#fff8e1", "#ffe0b2", "#ffd54f", "#ffcc80", "#ffab91",
+            "#ffe57f", "#f8bbd0", "#e1bee7", "#b3e5fc", "#c8e6c9"
+        ];
+
+        button.addEventListener("click", async () => {
+            // Fetch joke from API
+            const response = await fetch('/api/joke');
+            const data = await response.json();
+            jokeDiv.textContent = data.joke;
+
+            // Animate cheese emoji randomly
+            cheeseEmoji.style.transform = `rotate(${Math.random() * 360}deg) scale(${1 + Math.random()})`;
+
+            // Random background color
+            const color = bgColors[Math.floor(Math.random() * bgColors.length)];
+            document.body.style.backgroundColor = color;
+        });
+    </script>
+</body>
+</html>
