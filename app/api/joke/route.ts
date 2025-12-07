@@ -1,0 +1,29 @@
+import { NextResponse } from "next/server";
+
+const jokes = [
+  "What type of cheese is made backward? Edam!",
+  "Why did the wheel of cheese never listen? Because it was too mature!",
+  "What do you call cheese that isn’t yours? Nacho cheese!",
+  "Why did the cheese cross the road? To get to the other curd!",
+  "What’s a cheese lover’s favorite music? R’n’Brie!",
+  "How do you handle dangerous cheese? Caerphilly.",
+  "Why did the cheddar break up with the brie? Too much drama!",
+  "What cheese do you use to disguise a small horse? Mascarpone!",
+  "What’s a pirate’s favorite cheese? Chedd-arrr!",
+  "Why did the mozzarella never get promoted? It was too soft.",
+  "Why don’t you ever invite a cheese to a party? It’s too mature.",
+  "How do you get a mouse to smile? Say 'cheese'!",
+  "What cheese is always alone? Provolone.",
+  "Why did the Swiss cheese go to therapy? It felt empty inside.",
+  "What’s a vampire’s favorite cheese? Fang-käse!",
+  "Why did the cheese sit by itself? It needed some R & Brie time.",
+  "What’s a cheese’s favorite horror movie? The Grate Escape!",
+  "What cheese can you hide behind? Camem-bear!",
+  "Why did the cheese fail its driving test? Too much curd-inal sin!",
+  "What cheese do you use to get rich? Cheddar!"
+];
+
+export async function GET() {
+  const randomIndex = Math.floor(Math.random() * jokes.length);
+  return NextResponse.json({ joke: jokes[randomIndex] });
+}
