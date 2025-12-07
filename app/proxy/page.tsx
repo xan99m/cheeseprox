@@ -14,18 +14,17 @@ export default function ProxyPage() {
       const text = await res.text();
       setResult(text);
     } catch (err) {
-      setResult("Error fetching data.");
+      setResult("Error fetching site: " + (err as Error).message);
     }
   };
 
   return (
     <div style={{ padding: "40px", background: "#111", color: "white", minHeight: "100vh" }}>
       <h1>Proxy Learning Tool</h1>
-      <p>This shows how a server fetches raw HTML from a remote site.</p>
-
+      <p>Enter a URL to see the raw HTML fetched by the server.</p>
       <input
         type="text"
-        placeholder="Enter a URL"
+        placeholder="example.com or https://example.com"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
         style={{
@@ -35,7 +34,6 @@ export default function ProxyPage() {
           marginRight: "10px",
         }}
       />
-
       <button
         onClick={fetchProxy}
         style={{
@@ -49,15 +47,16 @@ export default function ProxyPage() {
       >
         Fetch HTML
       </button>
-
-      <pre style={{
-        background: "#222",
-        padding: "20px",
-        marginTop: "20px",
-        borderRadius: "10px",
-        whiteSpace: "pre-wrap",
-        overflowX: "auto"
-      }}>
+      <pre
+        style={{
+          background: "#222",
+          padding: "20px",
+          marginTop: "20px",
+          borderRadius: "10px",
+          whiteSpace: "pre-wrap",
+          overflowX: "auto",
+        }}
+      >
         {result}
       </pre>
     </div>
