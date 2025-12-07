@@ -3,12 +3,23 @@ import { useState } from "react";
 
 export default function Home() {
   const [joke, setJoke] = useState("");
+  const [bgColor, setBgColor] = useState("#fff8e1"); // initial background
+
+  const colors = [
+    "#fff8e1", "#ffe0b2", "#ffd54f", "#ffcc80", "#ffab91",
+    "#ffe57f", "#f8bbd0", "#e1bee7", "#b3e5fc", "#c8e6c9"
+  ];
 
   async function getJoke() {
     try {
       const res = await fetch("/api/joke", { cache: "no-store" });
       const data = await res.json();
       setJoke(data.joke);
+
+      // Pick a random background color
+      const newColor = colors[Math.floor(Math.random() * colors.length)];
+      setBgColor(newColor);
+
     } catch {
       setJoke("Error getting joke 😢");
     }
@@ -24,6 +35,8 @@ export default function Home() {
         alignItems: "center",
         gap: "20px",
         fontFamily: "sans-serif",
+        backgroundColor: bgColor,
+        transition: "background-color 0.5s ease"
       }}
     >
       <button
